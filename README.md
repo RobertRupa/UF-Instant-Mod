@@ -165,3 +165,9 @@ this will create a folder called `squashfs-root` where you will find all the OS 
 *repack*
 
 `mksquashfs squashfs-root rootfs_MOD_UFINST_XXYYZZ -b 131072 -comp lzma`
+
+# UF-INSTANT firmware 4.9.0
+
+There is also a newer experimental mod for firmware **v4.9.0.2229-828.241128.1332**, with optional GPON serial number override and safer config partition handling.
+
+Please refer to [Firmware 4.9.0](Firmware%204.9.0/README.md) for details, tested checksums and instructions. The old 2022 modified image is still available and hasn't been replaced.
