@@ -73,3 +73,23 @@ On the tested old Realtek kernel, a 4096-byte `dd` write to the MTD character de
 To try another image without changing the committed one, the tested U-Boot environment uses `sw_tryactive=0` or `1`; `2` boots `sw_commit`. Have UART access before testing a new firmware.
 
 As with the original mod, **all mods are just for fun** and you are responsible for recovery if something goes wrong.
+
+# Missing flash command on 4.9.0
+
+The official 4.9.0 rootfs already contains `/etc/scripts/flash`, but it may not be available in the command PATH. The stock `omci_app` uses `flash get OMCI_FAKE_OK` (and may use `flash set`) and otherwise prints `sh: flash: not found`.
+
+To try this **without flashing anything**, first check the script and create a temporary command link:
+
+```sh
+ls -l /etc/scripts/flash
+head -n 3 /etc/scripts/flash
+ln -s /etc/scripts/flash /tmp/flash
+PATH=/tmp:$PATH
+export PATH
+command -v flash
+flash get OMCI_FAKE_OK
+```
+
+Note that a PATH change in your SSH shell **does not affect** an already running `omci_app` or the boot scripts. To fix child commands for a running daemon, it must be started with the corrected environment. The temporary `/tmp` link disappears after reboot. For a permanent **image1-only** fix, add a symlink `bin/flash -> ../etc/scripts/flash` to the modified RootFS **before repacking**, or explicitly configure PATH in its launch script. Do not patch the factory image just to perform this test.
+
+This corrects the missing command, but it is **not yet confirmed** to fix the MIB assertion or the `omci_app` abort (exit 134) seen when the fiber is connected. Keep the stick's hardware watchdog protection; do not erase `mtd3` or `mtd8`.
