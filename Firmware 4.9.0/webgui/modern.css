@@ -1,0 +1,16 @@
+/* UF-Instant modern WebGUI skin. No changes to forms, URLs, ASP handlers or scripts. */
+:root{color-scheme:light;--ui-bg:#eef2f6;--ui-panel:#fff;--ui-text:#182431;--ui-muted:#526476;--ui-line:#d8e1ea;--ui-accent:#0879d9;--ui-radius:10px}
+html{background:var(--ui-bg);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+body{color:var(--ui-text);background:var(--ui-bg);font-family:inherit;line-height:1.45}
+table{border-collapse:collapse;max-width:100%}
+td,th{padding:7px 9px}
+th{background:#e7f0f8;text-align:left}
+input:not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=image]),select,textarea{box-sizing:border-box;max-width:100%;padding:7px 9px;border:1px solid #b9c8d6;border-radius:6px;background:#fff;color:#182431;font:inherit}
+input[type=button],input[type=submit],input[type=reset],button{cursor:pointer;border:1px solid #0666ba;border-radius:6px;padding:7px 12px;background:var(--ui-accent);color:white;font:inherit}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #0879d9;outline-offset:2px}
+a{color:#0666ba}
+fieldset{border:1px solid var(--ui-line);border-radius:var(--ui-radius);background:var(--ui-panel)}
+legend{font-weight:650}
+img{max-width:100%;height:auto}
+@media(max-width:700px){body{margin:8px}table{font-size:13px}td,th{padding:4px}input,select{max-width:95vw}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
